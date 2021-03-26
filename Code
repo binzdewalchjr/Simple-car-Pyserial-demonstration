@@ -1,1 +1,22 @@
-# Place the code here
+import serial
+#port1 = portB
+dictionary1 = {}
+#walldistance = walldistance
+
+time = input('Enter your desired time in seconds: ')
+speed = input("Enter your desired speed in rotations per second: ")
+
+message = time
+message += ' '
+message += speed
+print(message)
+ser = serial.Serial(port1)
+print(ser.name)
+ser.write(message)
+
+with serial.Serial(port1, 9600, timeout=1) as ser:
+    arduinoMsg = ser.read()
+
+
+for 
+ 
