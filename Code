@@ -1,22 +1,25 @@
+# Importing Libraries
 import serial
-#port1 = portB
+import time
+#import matplotlib.pyplot as plt
+arduino = serial.Serial(port='COM4', baudrate=115200, timeout=.1)
+def write_read(x):
+    arduino.write(bytes(x, 'utf-8'))
+    time.sleep(0.05)
+    data = arduino.readline()
+    return data
+speed = input("Enter a motor speed: ") # Taking input from user
+distance = input("Enter a distance: ")
+message = speed + ',' + distance
+arduino.write(message)
 dictionary1 = {}
-#walldistance = walldistance
+xlist = []
+ylist = []
+while True:
+    value = arduino.read()
+    splitList = value.split(' ')
+    print(splitList) # printing the value
+    xlist.append(splitList(0))
+    ylist.append(splitList(1))
 
-time = input('Enter your desired time in seconds: ')
-speed = input("Enter your desired speed in rotations per second: ")
-
-message = time
-message += ' '
-message += speed
-print(message)
-ser = serial.Serial(port1)
-print(ser.name)
-ser.write(message)
-
-with serial.Serial(port1, 9600, timeout=1) as ser:
-    arduinoMsg = ser.read()
-
-
-for 
- 
+#plt.plot(xlist, ylist)
